@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 use App\Escuela;
 use App\PlantaDocente;
@@ -117,12 +118,13 @@ class PlantaController extends Controller
     public function show($id)
     {
         $escuela = Escuela::find($id);
-        $planta = PlantaDocente::where('id_escuela',$id)->get();
+        $planta = PlantaDocente::where('id_escuela',$id)->simplePaginate(10);
         $data = [
             "escuela"=>$escuela,
             "planta"=>$planta,
             "validator"=>""
         ];
+        
 
         return view('planta.show')->with('data',$data);
     }
@@ -158,6 +160,19 @@ class PlantaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $pl=PlantaDocente::find($id);
+        $pl->delete();      
+
+        $escuela = Escuela::find(Auth::User()->id_escuela);
+        
+        $planta = PlantaDocente::where('id_escuela',Auth::User()->id_escuela)->paginate(10);
+        $data = [
+            "escuela"=>$escuela,
+            "planta"=>$planta,
+            "validator"=>""
+        ];
+
+        return redirect()->route('planta.show',$data);
     }
 }

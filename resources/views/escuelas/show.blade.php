@@ -6,7 +6,7 @@
 
     <div class="container">
         
-        @if(Auth::User()->rol=='admin')
+        
             <h1>Información de escuela</h1><br>            
                     {{ csrf_field() }}
                     <div class="form-group row">{{--Nombre escuela - Email --}}
@@ -104,10 +104,10 @@
                     
 
                    
-                    <a class="btn btn-link" href="{{route('planta.show',$escuela->id) }}" >Planta docente</a>
-                   
+                    
+        @if(Auth::User()->rol=='admin')           
         @else
-            <h1>Sos Encargado</h1>
+          <a class="btn btn-link" href="{{route('planta.show',$escuela->id) }}" >Planta docente</a>
         @endif    
     </div>
         

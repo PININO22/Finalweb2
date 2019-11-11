@@ -38,6 +38,8 @@ Route::get('/Planta/{id}/show', 'plantaController@show')->name('planta.show');
 
 Route::get('/Planta', 'plantaController@store')->name('planta.store');
 
+Route::get('/Planta/{id}/delete', 'plantaController@destroy')->name('planta.destroy');
+
 Route::get('/Planta/{id}/select', 'plantaController@select')->name('planta.select');
 
 Route::get('/Planta/create/{iddocente}/{idescuela}', 'plantaController@create')->name('planta.create');

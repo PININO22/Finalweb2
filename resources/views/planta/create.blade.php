@@ -6,7 +6,7 @@
 
     <div class="container">
         
-        @if(Auth::User()->rol=='admin')
+       
             <h1>Agregar Docente</h1><br>
             <form method="POST" action="{{ route('planta.store') }}">
                     {{ csrf_field() }}   
@@ -83,9 +83,7 @@
                     
                     <button type="submit" class="btn btn-primary">Agregar Docente a la planta</button>
                   </form>
-        @else
-            <h1>Sos Encargado</h1>
-        @endif    
+            
     </div>
         
 

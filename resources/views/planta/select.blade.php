@@ -5,7 +5,7 @@
     @section('content')
 
     
-        @if(Auth::User()->rol=='admin')
+        
         <div class="container">
             
             <table class="table">
@@ -34,9 +34,7 @@
                 @endforeach
             </table>            
         </div>
-        @else
-            <h1>Sos Encargado</h1>
-        @endif
+       
 
     @endsection
 @endif

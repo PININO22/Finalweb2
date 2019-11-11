@@ -20,7 +20,7 @@ class OrdenMeritoController extends Controller
      */
     public function index()
     {
-        $ordenes = OrdenDeMerito::all();
+        $ordenes = OrdenDeMerito::paginate();
 
         return view('orden.index')->with('data',$ordenes);
     }
@@ -70,21 +70,30 @@ class OrdenMeritoController extends Controller
     public function store(Request $request)
     {
         $file = $request->file('file');
- 
-       //obtenemos el nombre del archivo
-       $ext = $file->getClientOriginalExtension();
- 
-       //indicamos que queremos guardar un nuevo archivo en el disco local
-       \Storage::disk('local')->put('ordendemerito.'.$ext,  \File::get($file)); 
-       
-       Excel::import(new OrdenCollectionImport, 'ordendemerito.xlsx');
+        if(!empty($file)){
+            //obtenemos el nombre del archivo
+            $ext = $file->getClientOriginalExtension();
+            
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('local')->put('ordendemerito.'.$ext,  \File::get($file)); 
+            
+            Excel::import(new OrdenCollectionImport, 'ordendemerito.xlsx');
 
-       $data=[
-            'ordenes'=>OrdenDeMerito::all(),
-            'erroneos'=>OrdenFails::all(),
-       ]; 
+            $data=[
+                'ordenes'=>OrdenDeMerito::all(),
+                'erroneos'=>OrdenFails::all(),
+            ]; 
 
-       return view('orden.show')->with('data',$data);
+            return view('orden.show')->with('data',$data);
+        }
+        else{
+            $data = OrdenDeMerito::paginate();
+
+            
+            return redirect()->route('orden.index',$data);
+        }
+ 
+      
     }
 
     
@@ -179,10 +188,10 @@ class OrdenMeritoController extends Controller
             }
         }
         $this->delete();
-        $ordenes = OrdenDeMerito::all();
+        $data = OrdenDeMerito::paginate();
 
             
-        return view('orden.index')->with('data',$ordenes);
+        return redirect()->route('orden.index',$data);
     }
 
     /**
