@@ -148,9 +148,17 @@ class EscuelaController extends Controller
      */
     public function show($id)
     {
-        $escuela = Escuela::find($id);
+        $escuela = Escuela::where('id_usuario',$id)->first(); 
+        
+        if(!empty($escuela)){
+            return view('escuelas.show')->with('escuela',$escuela);
+        }
+        else{
+            $escuelas = Escuela::all();
+            return View('escuelas.index')->with('escuelas',$escuelas);
+        }
 
-        return view('escuelas.show')->with('escuela',$escuela);
+        
     }
 
     /**

@@ -8,7 +8,7 @@
         
         <div class="container">
                 
-            <h1>{{$data['escuela']->Nombre}}</h1>
+            <h1 style="float:left;">{{$data['escuela']->Nombre}}</h1><a style="float:right;"class="btn btn-success" href="{{route('planta.select',$data['escuela']->id) }}" >Agregar docente</a>
             <div class="table-responsive">
                     <table class="table table-striped">
                         <tr>
@@ -32,14 +32,14 @@
                                 <td><input type=submit class="btn btn-primary" value ="Borrar"></td>
                             </form> --}}
 
-                            <td> <a href="{{route('Planta.destroy',$pl) }}" class="btn btn-primary">Borrar</a></td>
+                            <td> <a href="{{route('Planta.destroy',$pl) }}"><img width="20" height="20" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Octagon_delete.svg/1024px-Octagon_delete.svg.png" alt="Borrar"></a></td>
                         </tr>
                     @endforeach
                     </table>
                 
             </div>
             {!!$data['planta']->render()!!}
-            <a class="btn btn-link" href="{{route('planta.select',$data['escuela']->id) }}" >Agregar docente</a>
+            
     </div>
             
 

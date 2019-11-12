@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Escuela extends Model
 {
-    protected $fillable = ['Nombre','Orientacion','Telefono','TelefonoInterno','Email','EsBilingue','CantidadAlumnos','CUE','Direccion','NivelCUE'];
+    protected $fillable = ['Nombre','Orientacion','Telefono','TelefonoInterno','Email','EsBilingue','CantidadAlumnos','CUE','Direccion','NivelCUE','id_usuario'];
     public $table = 'Escuelas';
 
     public function plantaDocente(){

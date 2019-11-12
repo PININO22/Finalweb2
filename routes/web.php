@@ -70,3 +70,5 @@ Route::get('/escuelas/{id}/edit', 'EscuelaController@edit')->name('escuelas.edit
 Route::get('/escuelas/{id}/show', 'EscuelaController@show')->name('escuelas.show');
 
 Route::get('/escuelas/{id}', 'EscuelaController@update')->name('escuelas.update');
+
+Route::get('/Informes', 'InformesController@index')->name('informes.index');

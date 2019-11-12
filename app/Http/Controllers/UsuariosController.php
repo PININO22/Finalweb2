@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Escuela;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -61,10 +62,16 @@ class UsuariosController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $escuela = Escuela::find($user->id_escuela);
+        $restoescuelas = Escuela::whereNull('id_usuario')->orderBy('nombre')->get();
+        
         $data=[
             'user'=>$user,
+            'escuela'=>$escuela,
+            'restoescuelas'=>$restoescuelas,
             'validator'=>""
         ]; 
+        
         return view('Usuarios.edit')->with('data',$data);
     }
 
@@ -99,8 +106,14 @@ class UsuariosController extends Controller
             $esc->apellido = Input::get('Apellido');            
             $esc->Email= Input::get('email');
             $esc->rol= Input::get('rol');           
+            $esc->id_escuela= Input::get('escuela');           
 
             $esc->save();
+
+            $escuela = Escuela::find($esc->id_escuela);
+            $escuela->id_usuario =$esc->id;
+
+            $escuela->save();
 
             
             $users = User::all();

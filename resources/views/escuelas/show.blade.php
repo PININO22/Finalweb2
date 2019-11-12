@@ -4,8 +4,7 @@
 
     @section('content')
 
-    <div class="container">
-        
+    <div class="container">        
         
             <h1>Información de escuela</h1><br>            
                     {{ csrf_field() }}
@@ -105,11 +104,12 @@
 
                    
                     
-        @if(Auth::User()->rol=='admin')   
-        <a class="btn btn-link" href="{{route('planta.show',$escuela->id) }}" >Planta docente</a>        
-        @else
-          <a class="btn btn-link" href="{{route('planta.show',$escuela->id) }}" >Planta docente</a>
-        @endif    
+          @if(Auth::User()->rol=='admin')   
+          <a class="btn btn-link" href="{{route('planta.show',$escuela->id) }}" >Planta docente</a>        
+          @else
+            <a class="btn btn-primary" href="{{route('planta.show',$escuela->id) }}" >Planta docente</a>
+          @endif   
+        
     </div>
         
     

@@ -7,10 +7,10 @@
     
         @if(Auth::User()->rol=='admin')
         <div class="container">
-            
-            <table class="table">
+                <div class="container">  
+            <table class="table table-striped">
                     <tr>
-                            <th>Nombre de Usuario</th><th>Nombre</th><th>Apellido</th><th>E-mail</th><th>Rol</th>
+                            <th>Nombre de Usuario</th><th>Nombre</th><th>Apellido</th><th>E-mail</th><th>Rol</th><th>Editar</th><th>Borrar</th>
                         </tr>
 
                 @foreach ($users as $user)
@@ -21,12 +21,8 @@
                             <td>{{$user->apellido}} </td>
                             <td>{{$user->email}} </td>                        
                             <td>{{$user->rol}} </td>
-                            <td><a class="btn btn-link" href="{{route('Usuarios.edit',$user->id) }}" >Editar</a></td>
-                            <form method='GET' action="{{route('Usuarios.destroy',$user->id) }}">
-                                @method('DELETE')
-                            <td><input type=submit class="btn btn-link" value ="Borrar"></td>
-                        
-                            </form>
+                            <td><a class="btn btn-link" href="{{route('Usuarios.edit',$user->id) }}" ><img width="20" height="20" src="https://i.ibb.co/0QnP0qw/editar.png" alt="Editar"></a></td>                            
+                            <td><a class="btn btn-link" href="{{route('Usuarios.destroy',$user->id) }}" ><img width="20" height="20" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Octagon_delete.svg/1024px-Octagon_delete.svg.png" alt="Borrar"></a></td>
                         </tr>
                     @else
                         <tr>
@@ -35,7 +31,7 @@
                             <td>{{$user->apellido}} </td>
                             <td>{{$user->email}} </td>                        
                             <td>{{$user->rol}} </td>
-                            <td><a class="btn btn-link" href="{{route('Usuarios.edit',$user->id) }}" >Editar</a></td>
+                            
                             
                         </tr>
                     @endif       
@@ -44,7 +40,7 @@
             </table>
             
 
-            
+        </div>
         </div>
         @else
             <h1>Sos Encargado</h1>

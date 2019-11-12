@@ -37,6 +37,20 @@
                                 </div> 
                                                
                     </div>
+                    <div class="form-group row">{{--Escuela--}}
+                            <label class="col-sm-2 col-form-label">Escuela:</label>
+                                <div class="col-sm-4">
+                                    <select name="escuela" class="form-control">  
+                                        <option selected value="{{$data['escuela']->id}}">{{$data['escuela']->Nombre}}</option>  
+                                        @foreach($data['restoescuelas'] as $esc)                                            
+                                        
+                                        <option value="{{$esc->id}}">{{$esc->nombre}}</option>
+                                         
+                                        @endforeach
+                                    </select>
+                                </div>                                
+                                               
+                    </div>
                 
                     
                     @if(!empty($data['validator']))

@@ -65,7 +65,7 @@ class OrdenCollectionImport implements ToCollection, WithHeadingRow
                     $res->incumbencia =$row['incumbencia'];
                     $res->titulo =$row['titulo'];
                     $res->categoriatitulo =$row['categoria_titulo'];
-                    $res->errors =implode(' | ',$errors);
+                    
                     if(!empty($res->id)){
                         $res->save();
                     }
@@ -84,8 +84,7 @@ class OrdenCollectionImport implements ToCollection, WithHeadingRow
                         'incumbencia' => $row['incumbencia'],
                         'titulo' => $row['titulo'],
                         'categoriatitulo' => $row['categoria_titulo'],
-                        'cuilyear'=>$row['cuil'].$row['ano'],
-                        'errors'=>implode(' | ',$errors)
+                        'cuilyear'=>$row['cuil'].$row['ano']
                     ]);
                 }              
                 

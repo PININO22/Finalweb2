@@ -45,11 +45,21 @@
                 </div>
                 <h1>&nbsp</h1>
                 
+                <div class="card" style="width: 18rem;">
+                        <img src="http://www.eusko-ikaskuntza.eus/upload/imgs/266_12.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Informes</h5>
+                          <p class="card-text">Aquí hay datos relevantes sobre la información almacenada en el sistema</p>
+                          <a href="{{route('informes.index') }}" class="btn btn-primary">Informes</a>
+                        </div>
+                    </div>
+                    <h1>&nbsp</h1>
+                
             
             </div>
             
         @else
-            {!!redirect()->route('escuelas.show',Auth::User()->id_escuela)!!}
+            {!!redirect()->route('escuelas.show',Auth::User()->id)!!}
         @endif    
     </div>
 
