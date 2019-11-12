@@ -29,7 +29,7 @@ class EscuelaController extends Controller
      */
     public function index()
     {
-        $escuelas = Escuela::all();
+        $escuelas = Escuela::paginate(10);
         return View('escuelas.index')->with('escuelas',$escuelas);
     }
 
@@ -76,7 +76,6 @@ class EscuelaController extends Controller
             'Nombre'=> 'required|max:100',
             'Usuario'=> 'required',
             'Email'=>'email|max:100',
-            'Orientacion'=>'required|max:50',
             'Telefono'=>'max:15',
             'TipoSecundaria' => Rule::requiredIf($request['Nivel']==3),
             'CUE'=>'required|max:11',            
@@ -136,7 +135,7 @@ class EscuelaController extends Controller
             
 
             
-            return view('escuelas.index')->with('escuelas',Escuela::all());
+            return view('escuelas.index')->with('escuelas',Escuela::paginate(10));
         }
     }
 
@@ -148,13 +147,13 @@ class EscuelaController extends Controller
      */
     public function show($id)
     {
-        $escuela = Escuela::where('id_usuario',$id)->first(); 
+        $escuela = Escuela::find($id);
         
         if(!empty($escuela)){
             return view('escuelas.show')->with('escuela',$escuela);
         }
         else{
-            $escuelas = Escuela::all();
+            $escuelas = Escuela::paginate(10);
             return View('escuelas.index')->with('escuelas',$escuelas);
         }
 
@@ -250,7 +249,7 @@ class EscuelaController extends Controller
             $esc->save();
 
             
-            $escuelas = Escuela::all();
+            $escuelas = Escuela::paginate(10);
             return View('escuelas.index')->with('escuelas',$escuelas);
         }
     }
@@ -270,7 +269,7 @@ class EscuelaController extends Controller
         $user->id_escuela=0;
         $user->save();        
 
-        $escuelas = Escuela::all();
+        $escuelas = Escuela::paginate(10);
         return view('escuelas.index')->with('escuelas',$escuelas);
     }
 }

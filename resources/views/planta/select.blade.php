@@ -32,7 +32,10 @@
                         
                     
                 @endforeach
-            </table>            
+            </table> 
+            {!!$data['docente']->render()!!}
+            <h5>¿No se encuentra el docente en la lista? Agrégalo!</h5>
+            <a class="btn btn-success" href="{{route('Docentes.create') }}">Agregar docente</a>           
         </div>
        
 

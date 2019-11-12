@@ -66,7 +66,7 @@
                     <button type="submit" class="btn btn-primary">Actualizar usuario</button>
                   </form>
         @else
-            <h1>Sos Encargado</h1>
+            <h1>Solicite una escuela para ser asignado</h1>
         @endif    
     </div>
         

@@ -33,13 +33,13 @@
                     
                 @endforeach
             </table>
-            
+            {!!$docentes->render()!!}
             <a class="btn btn-success" href="{{route('Docentes.create') }}">Agregar docente</a>
 
             
         </div>
         @else
-            <h1>Sos Encargado</h1>
+            <h1>Solicite una escuela para ser asignado</h1>
         @endif
 
     @endsection

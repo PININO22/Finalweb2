@@ -51,7 +51,7 @@ class PlantaController extends Controller
     {
         $data=[
             'escuela'=>Escuela::find($id),
-            'docente'=>Docente::all()
+            'docente'=>Docente::paginate(10)
         ];
         return View('planta.select')->with('data',$data);
     }
@@ -64,7 +64,7 @@ class PlantaController extends Controller
      */
     public function store(Request $request)
     {    
-        $request['clave']= strtoupper($request['Materia']).$request['Curso'].$request['Division'].$request['SituacionRevista'].$request['idEscuela'].$request['idDocente'];
+        $request['clave']= strtoupper($request['Materia']).$request['Curso'].$request['Division'].$request['SituacionRevista'].$request['idEscuela'];
         $rules = [
             'Materia'=>'required|max:50',
             'clave'=> 'unique:plantadocente'

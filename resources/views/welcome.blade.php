@@ -59,7 +59,11 @@
             </div>
             
         @else
-            {!!redirect()->route('escuelas.show',Auth::User()->id)!!}
+            @if(!empty(Auth::User()->id_escuela))
+                {!!redirect()->route('escuelas.show',Auth::User()->id_escuela)!!}
+            @else
+                <h1>Solicite una escuela para ser asignado</h1>
+            @endif
         @endif    
     </div>
 

@@ -19,7 +19,7 @@ class DocentesController extends Controller
      */
     public function index()
     {
-        $docentes = Docente::all();
+        $docentes = Docente::paginate(10);
         return View('Docentes.index')->with('docentes',$docentes);
     }
 
@@ -79,7 +79,7 @@ class DocentesController extends Controller
 
             $esc->save();            
             
-            return view('Docentes.index')->with('docentes',Docente::all());
+            return view('Docentes.index')->with('docentes',Docente::paginate(10));
         }
     }
 
@@ -154,7 +154,7 @@ class DocentesController extends Controller
             $esc->save();
 
             
-            $docentes = Docente::all();
+            $docentes = Docente::paginate(10);
             return View('Docentes.index')->with('docentes',$docentes);
         }
     }
@@ -170,7 +170,7 @@ class DocentesController extends Controller
         $esc=Docente::find($id);
         $esc->delete();      
 
-        $docentes = Docente::all();
+        $docentes = Docente::paginate(10);
         return view('Docentes.index')->with('docentes',$docentes);
     }
 }

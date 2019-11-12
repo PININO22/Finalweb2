@@ -126,7 +126,7 @@
                     <button type="submit" class="btn btn-primary">Corregir Orden de mérito</button>
                   </form>
         @else
-            <h1>Sos Encargado</h1>
+            <h1>Solicite una escuela para ser asignado</h1>
         @endif    
     </div>
         
