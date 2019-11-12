@@ -8,7 +8,8 @@
         
        
             <h1>Agregar Docente</h1><br>
-            <form method="POST" action="{{ route('planta.store') }}">
+            
+            <form method="POST" action="{{ route('planta.store',$data['escuela']->id) }}">
                     {{ csrf_field() }}   
 
                     <div class="form-group row">{{--Curso - División--}}                        
@@ -42,7 +43,7 @@
                     <div class="form-group row">{{--Provincia - Localidad--}}                        
                         <label class="col-sm-2 col-form-label">Horas:*</label>
                             <div class="col-sm-4">
-                                @if($data['escuela']->Nivel=='secundario')
+                                @if($data['escuela']->Nivel->Nombre=='secundario')
                                     <input type="number" name="Horas" class="form-control" value="1">
                                 @else
                                 <input type="text" readonly name="Horas" class="form-control" placeholder="Solo es necesario en colegios secundarios ">

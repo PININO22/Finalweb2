@@ -105,7 +105,8 @@
 
                    
                     
-        @if(Auth::User()->rol=='admin')           
+        @if(Auth::User()->rol=='admin')   
+        <a class="btn btn-link" href="{{route('planta.show',$escuela->id) }}" >Planta docente</a>        
         @else
           <a class="btn btn-link" href="{{route('planta.show',$escuela->id) }}" >Planta docente</a>
         @endif    

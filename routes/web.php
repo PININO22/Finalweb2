@@ -12,8 +12,11 @@ use App\Ambito;
 */
 
 Route::get('/', function () {
-    
-    return view('welcome');
+    if(Auth::check()){
+        return view('welcome');
+    }else{
+        return view('auth.login');
+    }
 });
 
 Auth::routes();
@@ -34,11 +37,13 @@ Route::get('/usuarios/{id}/show', 'UsuariosController@destroy')->name('Usuarios.
 
 Route::get('/Docentes/{id}/show', 'DocentesController@destroy')->name('Docentes.destroy');
 
-Route::get('/Planta/{id}/show', 'plantaController@show')->name('planta.show');
+Route::get('/Planta/{id}', 'plantaController@show')->name('planta.show');
 
-Route::get('/Planta', 'plantaController@store')->name('planta.store');
+Route::post('/Planta/{id}', 'plantaController@store')->name('planta.store');
 
-Route::get('/Planta/{id}/delete', 'plantaController@destroy')->name('planta.destroy');
+Route::get('/Planta/{id}/destroy', 'plantaController@destroy')->name('Planta.destroy');
+
+Route::get('/escuelas/{id}/destroy', 'EscuelaController@destroy')->name('escuelas.destroy');
 
 Route::get('/Planta/{id}/select', 'plantaController@select')->name('planta.select');
 
@@ -61,8 +66,6 @@ Route::delete('/orden', 'OrdenMeritoController@delete')->name('orden.delete');
 Route::get('/escuelas/create', 'EscuelaController@create')->name('escuelas.create');
 
 Route::get('/escuelas/{id}/edit', 'EscuelaController@edit')->name('escuelas.edit');
-
-Route::delete('/escuelas/{id}/show', 'EscuelaController@destroy')->name('escuelas.destroy');
 
 Route::get('/escuelas/{id}/show', 'EscuelaController@show')->name('escuelas.show');
 

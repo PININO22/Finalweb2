@@ -27,10 +27,12 @@
                             <td>{{$pl->Horas??'Sin asignar'}}</td>
                             <td>{{$pl->SituacionRevista}}</td>                        
                             
-                            <form method='GET' action="{{route('planta.destroy',$pl)}}">
+                            {{-- <form method='POST' action="{{route('Planta.destroy',$pl)}}">
                                     @method('DELETE')
                                 <td><input type=submit class="btn btn-primary" value ="Borrar"></td>
-                            </form>
+                            </form> --}}
+
+                            <td> <a href="{{route('Planta.destroy',$pl) }}" class="btn btn-primary">Borrar</a></td>
                         </tr>
                     @endforeach
                     </table>

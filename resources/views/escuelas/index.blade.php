@@ -28,11 +28,10 @@
                         <td>{{$esc->CUE}} </td>
                         <td>{{$esc->Nivel->Nombre}} </td>
                         
-                        <td><a class="btn btn-link" href="{{route('escuelas.edit',$esc->id) }}" >Editar</a></td>
-                        <td><a class="btn btn-link" href="{{route('escuelas.show',$esc->id) }}" >Más Info</a></td>
-                        <form method='GET' action="{{route('escuelas.destroy',$esc->id) }}">
-                            @method('DELETE')
-                        <td><input type=submit class="btn btn-link" value ="Borrar"></td>
+                        <td><a class="btn btn-primary" href="{{route('escuelas.edit',$esc->id) }}" >Editar</a></td>
+                        <td><a class="btn btn-primary" href="{{route('escuelas.show',$esc->id) }}" >MásInfo</a></td>
+                        <td><a class="btn btn-primary" href="{{route('escuelas.destroy',$esc->id) }}" >Borrar</a></td>
+                        
                     
                         </form>
                     </tr>

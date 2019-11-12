@@ -96,7 +96,7 @@ class PlantaController extends Controller
             $planta->save();            
             
             $escuela = Escuela::find($planta->id_escuela);
-            $planta = PlantaDocente::where('id_escuela',$planta->id_escuela)->get();
+            $planta = PlantaDocente::where('id_escuela',$planta->id_escuela)->paginate(10);
             
             $data = [
                 "escuela"=>$escuela,
@@ -104,10 +104,12 @@ class PlantaController extends Controller
                 "validator"=>""
             ];
 
-            return view('Planta.show')->with('data',$data);
+            
+
+            return view('planta.show')->with('data',$data);
         
+        }
     }
-}
 
     /**
      * Display the specified resource.
@@ -162,17 +164,17 @@ class PlantaController extends Controller
     {
         
         $pl=PlantaDocente::find($id);
-        $pl->delete();      
+             
 
-        $escuela = Escuela::find(Auth::User()->id_escuela);
+        $escuela = Escuela::find($pl->id_escuela);
         
-        $planta = PlantaDocente::where('id_escuela',Auth::User()->id_escuela)->paginate(10);
+        $planta = PlantaDocente::where('id_escuela',$pl->id_escuela)->paginate(10);
         $data = [
             "escuela"=>$escuela,
             "planta"=>$planta,
             "validator"=>""
         ];
-
-        return redirect()->route('planta.show',$data);
+        $pl->delete(); 
+        return redirect()->route('planta.show',$escuela->id)->with('data',$data);
     }
 }

@@ -17,6 +17,7 @@ use App\TipoEscuela;
 use App\TipoJornada;
 use App\TipoSecundaria;
 use App\User;
+use App\PlantaDocente;
 
 
 class EscuelaController extends Controller
@@ -254,6 +255,7 @@ class EscuelaController extends Controller
      */
     public function destroy($id)
     {
+        $planta = PlantaDocente::where('id_escuela',$id)->delete();
         $esc=Escuela::find($id);
         $esc->delete();
         $user=User::where('id_escuela',$id)->first();
