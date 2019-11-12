@@ -41,8 +41,9 @@ class InformesController extends Controller
                                     ->get();
         
         $cantInscriptos=OrdenDeMerito::groupBy('cuil')->count();
-        
-        $inscripcionesCargosLocalidadCuil=OrdenDeMerito::selectRaw('cargo,localidad,cuil,count(*) as Cantidad')
+
+        $a =OrdenDeMerito::count();
+        $inscripcionesCargosLocalidadCuil=OrdenDeMerito::selectRaw('localidad,cargo,cuil,count(*)/'.$a.'*100 as Promedio')
                                                     ->whereNotNull('cargo')
                                                     ->groupBy('cargo','localidad','cuil')
                                                     ->get();

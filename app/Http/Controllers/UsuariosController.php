@@ -109,11 +109,13 @@ class UsuariosController extends Controller
             $esc->id_escuela= Input::get('escuela');           
 
             $esc->save();
+            if(!empty(Input::get('escuela'))){
+                $escuela = Escuela::find($esc->id_escuela);
+                $escuela->id_usuario =$esc->id;
 
-            $escuela = Escuela::find($esc->id_escuela);
-            $escuela->id_usuario =$esc->id;
-
-            $escuela->save();
+                $escuela->save();
+            }
+            
 
             
             $users = User::all();

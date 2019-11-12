@@ -24,13 +24,13 @@
 
             <h4>Cantidad de Inscriptos por cargo, localidad, y persona</h4>
             <table class="table table-striped">
-                <tr><th>Cargo</th><th>Localidad</th><th>CUIL</th><th>Cantidad</th></tr>
+                <tr><th>Cargo</th><th>Localidad</th><th>cuil</th><th>Promedio</th></tr>
                 @foreach($data['inscripcionesCargosLocalidadCuil'] as $esc)
                     <tr>
                         <td>{{$esc->cargo}}</td>
                         <td>{{$esc->localidad}}</td>
                         <td>{{$esc->cuil}}</td>
-                        <td>{{$esc->Cantidad}}</td>
+                        <td>{{$esc->Promedio}}</td>
                     </tr>
                 @endforeach
             </table>
